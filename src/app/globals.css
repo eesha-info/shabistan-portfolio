@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --background: #06060d;
+  --foreground: #e7e7ef;
+  --accent-1: #818cf8;
+  --accent-2: #60a5fa;
+  --card: rgba(255, 255, 255, 0.04);
+  --card-border: rgba(255, 255, 255, 0.08);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Fixed ambient glow behind all content */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -20;
+  background:
+    radial-gradient(600px circle at 15% 10%, rgba(129, 140, 248, 0.16), transparent 60%),
+    radial-gradient(700px circle at 85% 25%, rgba(96, 165, 250, 0.12), transparent 60%),
+    radial-gradient(800px circle at 50% 90%, rgba(167, 139, 250, 0.12), transparent 60%),
+    var(--background);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.card-surface {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(6px);
+}
+
+::selection {
+  background: rgba(129, 140, 248, 0.35);
+  color: #fff;
+}
+
+/* Blinking cursor used by the typing effect in the hero */
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.typing-cursor {
+  animation: blink 1s steps(1) infinite;
+}
+
+/* Thin scrollbar to match the dark theme */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(129, 140, 248, 0.35);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(129, 140, 248, 0.55);
+}
